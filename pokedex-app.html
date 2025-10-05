@@ -18,6 +18,7 @@
             const pokemonRespond = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNumber}`);
             if(pokemonRespond.ok){
                 const thePokemonObjct = await pokemonRespond.json();
+                await console.log(thePokemonObjct);
                 return await thePokemonObjct
             }else{
                 throw Error("cant find the pokemon`s API");
