@@ -1,7 +1,8 @@
 
 
-interface ChosenPokemonObject{
+export interface ChosenPokemonObject{
     name: string;
+    img: string
     hp:number;
     attack:number;
     defense:number;
@@ -10,3 +11,4 @@ interface ChosenPokemonObject{
     speed:number;
     type:string[];
 }
+
