@@ -1,8 +1,8 @@
 
 
 export interface ChosenPokemonObject{
+    img: string;
     name: string;
-    img: string
     hp:number;
     attack:number;
     defense:number;

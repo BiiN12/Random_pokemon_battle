@@ -16,9 +16,9 @@ function playGame():void{
             }
         };
         const CPUPokemon:ChosenPokemonObject = getRandomPokemon();
-        determineBattleWinner(playerPokemon, CPUPokemon) //return: (Win, Lose, Draw)
-        compareStatsVisialy() //the function with timeout to show the stats
-        updateResults();
+        compareStatsVisialy(playerPokemon, CPUPokemon) //the function with timeout to show the stats on the HTML
+        const gameResult = determineBattleWinner(playerPokemon, CPUPokemon) //return: (Win, Lose, Draw)
+        updateResults(gameResult);
         playAgain = willPlayAgain();
     };
     saveResultsInDataBase();
