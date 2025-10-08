@@ -20,7 +20,7 @@ interface PokemonTypes{
     fairy:string[];
 }
 
- const superEffectivTypes: PokemonTypes = {
+export const superEffectivTypes: PokemonTypes = {
     fire: ['grass', "ice", "bug","steel"],
     water: ["fire","ground", "rock"],
     electric: ["water", "flying"],

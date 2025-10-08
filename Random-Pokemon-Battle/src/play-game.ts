@@ -1,6 +1,7 @@
+import type{ChosenPokemonObject} from "./player-cpu-objects.ts";
+import {compareStatsVisialy} from "./compare-Stats-Visialy.ts";
 
-
-function playGame():void{
+export function playGame():void{
     let playAgain:boolean = true;
     while (playAgain) {
         let pokeBall:number = 3;
@@ -16,8 +17,7 @@ function playGame():void{
             }
         };
         const CPUPokemon:ChosenPokemonObject = getRandomPokemon();
-        compareStatsVisialy(playerPokemon, CPUPokemon) //the function with timeout to show the stats on the HTML
-        const gameResult = determineBattleWinner(playerPokemon, CPUPokemon) //return: (Win, Lose, Draw)
+        const gameResult = compareStatsVisialy(playerPokemon, CPUPokemon) //the function with timeout to show the stats on the HTML - return (win, loss, tie)
         updateResults(gameResult);
         playAgain = willPlayAgain();
     };

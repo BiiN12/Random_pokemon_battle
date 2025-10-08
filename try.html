@@ -30,7 +30,7 @@
             attack: 60,
             defense:60,
             specialAttack:80,
-            specialDefense:95,
+            specialDefense:80,
             speed:80,
             type:["grass","poison"],
         }
@@ -39,13 +39,15 @@
             let playerPoints = 0;
             let cpuPoints = 0;
             const tableElment = document.createElement("table");
-            
+            let numberOfRows = 0
             Object.keys(playerPokemonObjc).forEach(key =>{
+                
               const rowElment = document.createElement("tr");
               const keyNameTd = document.createElement("td");
               const playerTD = document.createElement("td");
               const cpuTD = document.createElement("td");
               const winnerTD = document.createElement("td");
+              numberOfRows++;
 
               if(key === "img"){
                 playerTD.innerHTML = `<img src='${playerPokemonObjc[key]}'>`;
@@ -65,16 +67,20 @@
                         winnerTD.innerHTML = `<p>Its a Tie</p>`;
                     }
                 }
-              }
-              
-              rowElment.appendChild(keyNameTd);
-              rowElment.appendChild(playerTD);
-              rowElment.appendChild(cpuTD);
-              rowElment.appendChild(winnerTD);
-              tableElment.appendChild(rowElment);
+              };
+                
+                const delay = numberOfRows * 1300
+                setTimeout(() => {
+                    rowElment.appendChild(keyNameTd);
+                    rowElment.appendChild(playerTD);
+                    rowElment.appendChild(cpuTD);
+                    rowElment.appendChild(winnerTD);
+                    tableElment.appendChild(rowElment);
+                    document.body.appendChild(tableElment);
+                }, delay);
             });
-            document.body.appendChild(tableElment);
         }
+              
         compareStatsVisialy(obj1,obj2);
 
     </script>
