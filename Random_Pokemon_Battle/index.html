@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>random-pokemon-battle</title>
+  <script src="https://kit.fontawesome.com/95d0fb72b9.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="header">
+      Random Pokémon Battle
+    </div>
+    <div class="choose-pokemon" id="choose-pokemon">
+      <h3 id="player">Choose Your Pokémon!</h3>
+      <p id="description">You have <span id="balls">3</span> Poké Balls left. Throw a ball to see what Pokémon appears!
+      </p>
+      <img src="/images/poke-ball.png" alt="pokemon-ball" id="pokemon-ball">
+      <h2 id="pokemon-name"></h2>
+      <p id="throw">Click the Poké Ball to throw it!</p>
+      <div class="hold-skip hidden" id="hold-skip">
+        <button class="hold-btn" id="hold-btn">Hold</button>
+        <button class="skip-btn" id="skip-btn">Throw</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
