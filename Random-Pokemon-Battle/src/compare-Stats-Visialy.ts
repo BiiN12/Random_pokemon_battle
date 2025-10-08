@@ -1,8 +1,5 @@
 
 
-
-
-
 // console.log("nice try amit");
 
 // const obj1:ChosenPokemonObject = {
@@ -48,9 +45,11 @@ function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPokemonOb
             cpuTD.innerHTML = `<p>${CPUPokemonObjc[key]}</p>`;
             if(key !== "name"){
                 if(playerPokemonObjc[key]>CPUPokemonObjc[key]){
-                    winnerTD.innerHTML = "<p>Player Wins</p>";
+                    winnerTD.innerHTML = `<p>${playerPokemonObjc.name} Wins</p>`;
                 }else if (playerPokemonObjc[key]<CPUPokemonObjc[key]){
-                    winnerTD.innerHTML = "<p>CPU Wins</p>";
+                    winnerTD.innerHTML = `<p>${CPUPokemonObjc.name} Wins</p>`;
+                }else{
+                    winnerTD.innerHTML = `<p>Its a Tie</p>`;
                 }
             }
         }

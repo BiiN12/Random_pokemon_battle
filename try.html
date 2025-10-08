@@ -30,12 +30,14 @@
             attack: 60,
             defense:60,
             specialAttack:80,
-            specialDefense:80,
+            specialDefense:95,
             speed:80,
             type:["grass","poison"],
         }
 
         function compareStatsVisialy(playerPokemonObjc, CPUPokemonObjc) {
+            let playerPoints = 0;
+            let cpuPoints = 0;
             const tableElment = document.createElement("table");
             
             Object.keys(playerPokemonObjc).forEach(key =>{
@@ -52,11 +54,15 @@
                 keyNameTd.innerHTML = `<p>${key}</p>`;
                 playerTD.innerHTML = `<p>${playerPokemonObjc[key]}</p>`;
                 cpuTD.innerHTML = `<p>${CPUPokemonObjc[key]}</p>`;
-                if(key !== "name"){
+                if(key !== "name" && key !=="type"){
                     if(playerPokemonObjc[key]>CPUPokemonObjc[key]){
-                        winnerTD.innerHTML = "<p>Player Wins</p>";
+                        winnerTD.innerHTML = `<p>${playerPokemonObjc.name} Wins</p>`;
+                        playerPoints++;
                     }else if (playerPokemonObjc[key]<CPUPokemonObjc[key]){
-                        winnerTD.innerHTML = "<p>CPU Wins</p>";
+                        winnerTD.innerHTML = `<p>${CPUPokemonObjc.name} Wins</p>`;
+                        cpuPoints++;
+                    }else{
+                        winnerTD.innerHTML = `<p>Its a Tie</p>`;
                     }
                 }
               }
