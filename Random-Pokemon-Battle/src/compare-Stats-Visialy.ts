@@ -1,7 +1,14 @@
-import type{ChosenPokemonObject} from "./player-cpu-objects.ts";
-import {superEffectivTypes} from "./type-object";
+import type{ChosenPokemonObject} from "./type-object";
+// import {superEffectivTypes} from "./type-object";
 
 export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPokemonObjc:ChosenPokemonObject):string {
+    const pokeBallImg = document.getElementById('pokemon-ball') as HTMLImageElement;
+    const holdSkipDiv = document.getElementById('hold-skip') as HTMLDivElement;
+    const holdBtn = document.getElementById('hold-btn') as HTMLButtonElement;
+    const skipBtn = document.getElementById('skip-btn') as HTMLButtonElement;
+    const pokemonName = document.getElementById('pokemon-name') as HTMLParagraphElement;
+    const ballsText = document.getElementById('balls') as HTMLParagraphElement;
+    const throwText = document.getElementById('throw') as HTMLParagraphElement;
     const tableElment:HTMLElement = document.createElement("table");
     let playerPoints:number = 0;
     let cpuPoints:number = 0;
@@ -34,13 +41,21 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
                 }
             }
         }
+        holdSkipDiv.classList.add('hidden');
+        pokemonName.classList.add('hidden');
+        ballsText.classList.add('hidden');
+        throwText.classList.add('hidden');
+        holdBtn.classList.add('hidden');
+        skipBtn.classList.add('hidden');
+
+        pokeBallImg.replaceWith(tableElment);
         if(key === "img" || key === "name"){
             rowElment.appendChild(keyNameTd);
             rowElment.appendChild(playerTD);
             rowElment.appendChild(cpuTD);
             rowElment.appendChild(winnerTD);
             tableElment.appendChild(rowElment);
-            document.body.appendChild(tableElment);
+            // document.body.appendChild(tableElment);
         }else{
             const delay:number = numberOfRows * 1000;
             setTimeout(() => {
@@ -49,34 +64,39 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
                 rowElment.appendChild(cpuTD);
                 rowElment.appendChild(winnerTD);
                 tableElment.appendChild(rowElment);
-                document.body.appendChild(tableElment);
+                // document.body.appendChild(tableElment);
             }, delay);
         }
     });
-    if (playerPoints === cpuPoints){
-        playerPokemonObjc.type.forEach(playerType =>{
-           const playerTypesArry:string[] = superEffectivTypes[playerType as keyof typeof superEffectivTypes];
-           CPUPokemonObjc.type.forEach(cpuType =>{
-                if(playerTypesArry.includes(cpuType)){
-                    playerPoints++
-                }
-           });
-        });
-        CPUPokemonObjc.type.forEach(cpuType =>{
-           const cpuTypesArry:string[] = superEffectivTypes[cpuType as keyof typeof superEffectivTypes];
-           playerPokemonObjc.type.forEach(playerType =>{
-                if(cpuTypesArry.includes(playerType)){
-                    cpuPoints++
-                }
-           });
-        });
-    }
+
+    //TIE BRAKER:
+    // if (playerPoints === cpuPoints){
+    //     playerPokemonObjc.type.forEach(playerType =>{
+    //        const playerTypesArry:string[] = superEffectivTypes[playerType as keyof typeof superEffectivTypes];
+    //        CPUPokemonObjc.type.forEach(cpuType =>{
+    //             if(playerTypesArry.includes(cpuType)){
+    //                 playerPoints++
+    //             }
+    //        });
+    //     });
+    //     CPUPokemonObjc.type.forEach(cpuType =>{
+    //        const cpuTypesArry:string[] = superEffectivTypes[cpuType as keyof typeof superEffectivTypes];
+    //        playerPokemonObjc.type.forEach(playerType =>{
+    //             if(cpuTypesArry.includes(playerType)){
+    //                 cpuPoints++
+    //             }
+    //        });
+    //     });
+    // }
 
     if (playerPoints > cpuPoints) {
+        console.log("WIN");
         return "WIN"
     }else if( playerPoints < cpuPoints){
+        console.log("LOSS");
         return "LOSS"
     }else{
+        console.log("TIE");
         return "TIE"
     }
 };
