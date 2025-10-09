@@ -25,11 +25,11 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
         if(key === "img"){
             playerTD.innerHTML = `<img src='${playerPokemonObjc[key as keyof typeof playerPokemonObjc]}'>`;
             cpuTD.innerHTML = `<img src='${CPUPokemonObjc[key as keyof typeof CPUPokemonObjc]}'>`;
-        }else{
+        }else if(key !== "type"){
             keyNameTd.innerHTML = `<p>${key}: </p>`;
             playerTD.innerHTML = `<p>${playerPokemonObjc[key as keyof typeof playerPokemonObjc]}</p>`;
             cpuTD.innerHTML = `<p>${CPUPokemonObjc[key as keyof typeof CPUPokemonObjc]}</p>`;
-            if(key !== "name" && key !=="type"){
+            if(key !== "name"){
                 if(playerPokemonObjc[key as keyof typeof playerPokemonObjc]>CPUPokemonObjc[key as keyof typeof CPUPokemonObjc]){
                     winnerTD.innerHTML = `<p>${playerPokemonObjc.name} Wins</p>`;
                     ++playerPoints;
@@ -40,7 +40,40 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
                     winnerTD.innerHTML = `<p>Its a Tie</p>`;
                 }
             }
+        };
+
+        // TIE BRAKER: (will happen only if there is a tie)
+        if(key === "type" && playerPoints === cpuPoints){
+            keyNameTd.innerHTML = `<p>${key}: </p>`;
+            playerTD.innerHTML = `<p>${playerPokemonObjc[key as keyof typeof playerPokemonObjc]}</p>`;
+            cpuTD.innerHTML = `<p>${CPUPokemonObjc[key as keyof typeof CPUPokemonObjc]}</p>`;
+
+            playerPokemonObjc.type.forEach(playerType =>{
+                const playerTypesArry:string[] = superEffectivTypes[playerType as keyof typeof superEffectivTypes];
+                CPUPokemonObjc.type.forEach(cpuType =>{
+                    if(playerTypesArry.includes(cpuType)){
+                        playerPoints++
+                    }
+                });
+            });
+            CPUPokemonObjc.type.forEach(cpuType =>{
+                const cpuTypesArry:string[] = superEffectivTypes[cpuType as keyof typeof superEffectivTypes];
+                playerPokemonObjc.type.forEach(playerType =>{
+                    if(cpuTypesArry.includes(playerType)){
+                        cpuPoints++
+                    }
+                });
+            });
+            if (playerPoints > cpuPoints) {
+                winnerTD.innerHTML = `<p>${playerPokemonObjc.name} Wins</p>`;
+            }else if(playerPoints < cpuPoints){
+                winnerTD.innerHTML = `<p>${CPUPokemonObjc.name} Wins</p>`;
+            }else{
+                winnerTD.innerHTML = `<p>Its a Tie</p>`;
+            }
         }
+
+        // dysplaying all the battle on the WEB PAGE:
         holdSkipDiv.classList.add('hidden');
         pokemonName.classList.add('hidden');
         ballsText.classList.add('hidden');
@@ -49,14 +82,12 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
         skipBtn.classList.add('hidden');
 
         pokeBallImg.replaceWith(tableElment);
-
         if(key === "img" || key === "name"){
             rowElment.appendChild(keyNameTd);
             rowElment.appendChild(playerTD);
             rowElment.appendChild(cpuTD);
             rowElment.appendChild(winnerTD);
             tableElment.appendChild(rowElment);
-            // document.body.appendChild(tableElment);
         }else{
             const delay:number = numberOfRows * 1000;
             setTimeout(() => {
@@ -65,32 +96,11 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
                 rowElment.appendChild(cpuTD);
                 rowElment.appendChild(winnerTD);
                 tableElment.appendChild(rowElment);
-                // document.body.appendChild(tableElment);
             }, delay);
         }
     });
 
-    // TIE BRAKER:
-    if (playerPoints === cpuPoints){
-        playerPokemonObjc.type.forEach(playerType =>{
-           const playerTypesArry:string[] = superEffectivTypes[playerType as keyof typeof superEffectivTypes];
-           CPUPokemonObjc.type.forEach(cpuType =>{
-                if(playerTypesArry.includes(cpuType)){
-                    playerPoints++
-                }
-           });
-        });
-        CPUPokemonObjc.type.forEach(cpuType =>{
-           const cpuTypesArry:string[] = superEffectivTypes[cpuType as keyof typeof superEffectivTypes];
-           playerPokemonObjc.type.forEach(playerType =>{
-                if(cpuTypesArry.includes(playerType)){
-                    cpuPoints++
-                }
-           });
-        });
-    }
     
-
     if (playerPoints > cpuPoints) {
         console.log("WIN");
         return "WIN"
