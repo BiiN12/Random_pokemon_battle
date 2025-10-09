@@ -1,5 +1,5 @@
 import type{ChosenPokemonObject} from "./type-object";
-// import {superEffectivTypes} from "./type-object";
+import {superEffectivTypes} from "./type-object";
 
 export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPokemonObjc:ChosenPokemonObject):string {
     const pokeBallImg = document.getElementById('pokemon-ball') as HTMLImageElement;
@@ -32,10 +32,10 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
             if(key !== "name" && key !=="type"){
                 if(playerPokemonObjc[key as keyof typeof playerPokemonObjc]>CPUPokemonObjc[key as keyof typeof CPUPokemonObjc]){
                     winnerTD.innerHTML = `<p>${playerPokemonObjc.name} Wins</p>`;
-                    playerPoints++;
+                    ++playerPoints;
                 }else if (playerPokemonObjc[key as keyof typeof playerPokemonObjc]<CPUPokemonObjc[key as keyof typeof CPUPokemonObjc]){
                     winnerTD.innerHTML = `<p>${CPUPokemonObjc.name} Wins</p>`;
-                    cpuPoints++
+                    ++cpuPoints;
                 }else{
                     winnerTD.innerHTML = `<p>Its a Tie</p>`;
                 }
@@ -49,6 +49,7 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
         skipBtn.classList.add('hidden');
 
         pokeBallImg.replaceWith(tableElment);
+
         if(key === "img" || key === "name"){
             rowElment.appendChild(keyNameTd);
             rowElment.appendChild(playerTD);
@@ -69,25 +70,26 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
         }
     });
 
-    //TIE BRAKER:
-    // if (playerPoints === cpuPoints){
-    //     playerPokemonObjc.type.forEach(playerType =>{
-    //        const playerTypesArry:string[] = superEffectivTypes[playerType as keyof typeof superEffectivTypes];
-    //        CPUPokemonObjc.type.forEach(cpuType =>{
-    //             if(playerTypesArry.includes(cpuType)){
-    //                 playerPoints++
-    //             }
-    //        });
-    //     });
-    //     CPUPokemonObjc.type.forEach(cpuType =>{
-    //        const cpuTypesArry:string[] = superEffectivTypes[cpuType as keyof typeof superEffectivTypes];
-    //        playerPokemonObjc.type.forEach(playerType =>{
-    //             if(cpuTypesArry.includes(playerType)){
-    //                 cpuPoints++
-    //             }
-    //        });
-    //     });
-    // }
+    // TIE BRAKER:
+    if (playerPoints === cpuPoints){
+        playerPokemonObjc.type.forEach(playerType =>{
+           const playerTypesArry:string[] = superEffectivTypes[playerType as keyof typeof superEffectivTypes];
+           CPUPokemonObjc.type.forEach(cpuType =>{
+                if(playerTypesArry.includes(cpuType)){
+                    playerPoints++
+                }
+           });
+        });
+        CPUPokemonObjc.type.forEach(cpuType =>{
+           const cpuTypesArry:string[] = superEffectivTypes[cpuType as keyof typeof superEffectivTypes];
+           playerPokemonObjc.type.forEach(playerType =>{
+                if(cpuTypesArry.includes(playerType)){
+                    cpuPoints++
+                }
+           });
+        });
+    }
+    
 
     if (playerPoints > cpuPoints) {
         console.log("WIN");

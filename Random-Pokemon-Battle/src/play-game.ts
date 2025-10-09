@@ -23,7 +23,7 @@ export async function playGame():Promise<void>{
         let playerPokemon!:ChosenPokemonObject;
         
         while(!holdPokemon){
-            pokeBall--;
+            --pokeBall;
             playerPokemon = await getRandomPokemon();
             pokeBallImg.setAttribute('src', playerPokemon.img);
             loadingElem.replaceWith(pokeBallImg);
@@ -50,9 +50,13 @@ export async function playGame():Promise<void>{
         };
 
         const CPUPokemon:ChosenPokemonObject = await getRandomPokemon();
-        compareStatsVisialy(playerPokemon, CPUPokemon) //the function with timeout to show the stats on the HTML - return (win, loss, tie)
+        compareStatsVisialy(playerPokemon, CPUPokemon)
         // updateResults(gameResult);
-        // playAgain = willPlayAgain();
+        // playAgain = willPlayAgain(); --- use the play again promise instead
+        // const playAgainPromise = Promise.race([
+        //         waitForButtonClick(holdBtn).then(() => 'HOLD'),
+        //         waitForButtonClick(skipBtn).then(() => 'SKIP')
+        //         ]);
     };
     // saveResultsInDataBase();
 };
