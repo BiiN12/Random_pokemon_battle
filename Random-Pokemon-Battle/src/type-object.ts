@@ -18,10 +18,11 @@ interface PokemonTypes{
     dark:string[];
     steel:string[];
     fairy:string[];
+    normal:string[];
 }
 
- const superEffectivTypes: PokemonTypes = {
-    fire: ['grass', "ice", "bug","steel"],
+export const superEffectivTypes: PokemonTypes = {
+    fire: ["grass", "ice", "bug","steel"],
     water: ["fire","ground", "rock"],
     electric: ["water", "flying"],
     grass: ["water","ground", "rock"],
@@ -37,5 +38,18 @@ interface PokemonTypes{
     dragon: ["dragon"],
     dark: ["psychic", "ghost"],
     steel: ["ice", "rock"],
-    fairy: ["fighting", "dragon", "dark"]
+    fairy: ["fighting", "dragon", "dark"],
+    normal: [],
+}
+
+export interface ChosenPokemonObject{
+    img: string;
+    name: string;
+    hp:number;
+    attack:number;
+    defense:number;
+    specialAttack:number;
+    specialDefense:number;
+    speed:number;
+    type:string[];
 }
