@@ -1,9 +1,9 @@
 import type {ChosenPokemonObject} from "./type-object.ts";
 
 
-export async function getRandomPokemon():Promise<ChosenPokemonObject>{
-    const MAX_POKEMON_ID = 151;
-    const randomId = Math.floor(Math.random() * MAX_POKEMON_ID) + 1;
+export async function getRandomPokemon(numberOfPokemon:number = 151):Promise<ChosenPokemonObject>{
+    // const MAX_POKEMON_ID = 151;
+    const randomId = Math.floor(Math.random() * numberOfPokemon) + 1;
     const url = `https://pokeapi.co/api/v2/pokemon/${randomId}/`;
 
     try{

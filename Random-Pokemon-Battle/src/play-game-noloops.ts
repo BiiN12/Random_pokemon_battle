@@ -2,7 +2,7 @@ import type{ChosenPokemonObject} from "./type-object";
 import {compareStatsVisialy} from "./compare-Stats-Visialy.ts";
 import {getRandomPokemon} from "./get-Random-Pokemon.ts";
 
-export async function playGame2():Promise<void>{
+export async function playGame2(numberOfPokemon:number = 151):Promise<void>{
     const holdSkipDiv = document.getElementById('hold-skip') as HTMLDivElement;
     const holdBtn = document.getElementById('hold-btn') as HTMLButtonElement;
     const skipBtn = document.getElementById('skip-btn') as HTMLButtonElement;
@@ -17,7 +17,7 @@ export async function playGame2():Promise<void>{
 
     let pokeBall:number = 2;
     ballsText.innerText = `${pokeBall}`
-    let playerPokemon:ChosenPokemonObject = await getRandomPokemon();
+    let playerPokemon:ChosenPokemonObject = await getRandomPokemon(numberOfPokemon);
     pokeBallImg.setAttribute('src', playerPokemon.img);
     loadingElem.replaceWith(pokeBallImg);
     pokemonName.innerText = playerPokemon.name;
@@ -25,10 +25,10 @@ export async function playGame2():Promise<void>{
             
     skipBtn.addEventListener('click', async() => {
         --pokeBall;
-        playerPokemon = await getRandomPokemon();
+        playerPokemon = await getRandomPokemon(numberOfPokemon);
         if(pokeBall === 0){
             throwText.innerText = 'You have no Poké Balls left!';
-            const CPUPokemon:ChosenPokemonObject = await getRandomPokemon();
+            const CPUPokemon:ChosenPokemonObject = await getRandomPokemon(numberOfPokemon);
             compareStatsVisialy(playerPokemon, CPUPokemon);
         }else{
             pokeBallImg.setAttribute('src', playerPokemon.img);
@@ -39,7 +39,7 @@ export async function playGame2():Promise<void>{
     });
 
     holdBtn.addEventListener('click',async() =>{
-        const CPUPokemon:ChosenPokemonObject = await getRandomPokemon();
+        const CPUPokemon:ChosenPokemonObject = await getRandomPokemon(numberOfPokemon);
         compareStatsVisialy(playerPokemon, CPUPokemon);
     })
 

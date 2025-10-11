@@ -3,7 +3,7 @@ import {compareStatsVisialy} from "./compare-Stats-Visialy.ts";
 import {getRandomPokemon} from "./get-Random-Pokemon.ts";
 import {waitForButtonClick} from "./get-info-menu.ts";
 
-export async function playGame():Promise<void>{
+export async function playGame(numberOfPokemon:number):Promise<void>{
     const holdSkipDiv = document.getElementById('hold-skip') as HTMLDivElement;
     const holdBtn = document.getElementById('hold-btn') as HTMLButtonElement;
     const skipBtn = document.getElementById('skip-btn') as HTMLButtonElement;
@@ -24,7 +24,7 @@ export async function playGame():Promise<void>{
         
         while(!holdPokemon){
             --pokeBall;
-            playerPokemon = await getRandomPokemon();
+            playerPokemon = await getRandomPokemon(numberOfPokemon);
             pokeBallImg.setAttribute('src', playerPokemon.img);
             loadingElem.replaceWith(pokeBallImg);
             pokemonName.innerText = playerPokemon.name;
@@ -49,7 +49,7 @@ export async function playGame():Promise<void>{
             }
         };
 
-        const CPUPokemon:ChosenPokemonObject = await getRandomPokemon();
+        const CPUPokemon:ChosenPokemonObject = await getRandomPokemon(numberOfPokemon);
         compareStatsVisialy(playerPokemon, CPUPokemon)
         // updateResults(gameResult);
         // playAgain = willPlayAgain(); --- use the play again promise instead

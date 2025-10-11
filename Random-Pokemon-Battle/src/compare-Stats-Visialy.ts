@@ -44,7 +44,7 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
 
         // TIE BRAKER: (will happen only if there is a tie)
         if(key === "type" && playerPoints === cpuPoints){
-            keyNameTd.innerHTML = `<p>${key}: </p>`;
+            keyNameTd.innerHTML = `<p><span>Tie Braker: </span>${key}: </p>`;
             playerTD.innerHTML = `<p>${playerPokemonObjc[key as keyof typeof playerPokemonObjc]}</p>`;
             cpuTD.innerHTML = `<p>${CPUPokemonObjc[key as keyof typeof CPUPokemonObjc]}</p>`;
 
@@ -65,11 +65,11 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
                 });
             });
             if (playerPoints > cpuPoints) {
-                winnerTD.innerHTML = `<p>${playerPokemonObjc.name} Wins</p>`;
+                winnerTD.innerHTML = `<p>${playerPokemonObjc.name} Wins!</p>`;
             }else if(playerPoints < cpuPoints){
-                winnerTD.innerHTML = `<p>${CPUPokemonObjc.name} Wins</p>`;
+                winnerTD.innerHTML = `<p>${CPUPokemonObjc.name} Wins!</p>`;
             }else{
-                winnerTD.innerHTML = `<p>Its a Tie</p>`;
+                winnerTD.innerHTML = `<p>Its a Tie!</p>`;
             }
         }
 

@@ -53,3 +53,33 @@ export interface ChosenPokemonObject{
     speed:number;
     type:string[];
 }
+
+function createNumArr(startNum:number, endNum:number):number[] {
+    const returnArr:number[] = [];
+    for (let i = startNum; i <= endNum; i++) {
+        returnArr.push(i)
+    }
+    return returnArr;
+}
+interface Generation{
+    gen1: number[];
+    gen2: number[];
+    gen3: number[];
+    gen4: number[];
+    gen5: number[];
+    gen6: number[];
+    gen7: number[];
+    gen8: number[];
+    gen9: number[];
+}
+export const generationObj:Generation= {
+   gen1: createNumArr(1,151),
+   gen2: createNumArr(152,251),
+   gen3: createNumArr(252,386),
+   gen4: createNumArr(387,493),
+   gen5: createNumArr(494,649),
+   gen6: createNumArr(650,721),
+   gen7: createNumArr(722,809),
+   gen8: createNumArr(810,905),
+   gen9: createNumArr(906,1025)
+}
