@@ -1,9 +1,12 @@
 import type {ChosenPokemonObject} from "./type-object.ts";
+import {generationObj} from "./type-object.ts";
 
 
-export async function getRandomPokemon(numberOfPokemon:number = 151):Promise<ChosenPokemonObject>{
-    // const MAX_POKEMON_ID = 151;
-    const randomId = Math.floor(Math.random() * numberOfPokemon) + 1;
+const firstGen:number[] = generationObj.Gen1;
+export async function getRandomPokemon(numberOfPokemon:number[] = firstGen):Promise<ChosenPokemonObject>{
+    const randomId:number =numberOfPokemon[Math.floor(Math.random() * numberOfPokemon.length)];
+    // console.log(randomId);
+    
     const url = `https://pokeapi.co/api/v2/pokemon/${randomId}/`;
 
     try{
@@ -12,7 +15,7 @@ export async function getRandomPokemon(numberOfPokemon:number = 151):Promise<Cho
             throw new Error(`Having Problem Getting a Pokemon From API. Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         
         let chosenPokemon:ChosenPokemonObject = {
                 // img: data.sprites.front_default,
