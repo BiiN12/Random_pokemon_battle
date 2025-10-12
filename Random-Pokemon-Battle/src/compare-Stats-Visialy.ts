@@ -154,7 +154,7 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
         <div class="pokemon-cards">
           <div class="pokemon-card">
             <div class="card-header" style="background-color: ${playerTypeColor}; color: ${getContrastColor(playerTypeColor)};">
-              <h2>${playerPokemonObjc.name.charAt(0).toUpperCase() + playerPokemonObjc.name.slice(1)}</h2>
+              <h2>${playerPokemonObjc.name}</h2>
               <span style="color: ${getContrastColor(playerTypeColor)}">${playerPokemonObjc.type.join("/")}</span>
             </div>
             <img src="${playerPokemonObjc.img}" alt="${playerPokemonObjc.name}" >
@@ -162,7 +162,7 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
           <span class="vs">Vs</span>
           <div class="pokemon-card">
             <div class="card-header" style="background-color: ${cpuTypeColor}; color: ${getContrastColor(cpuTypeColor)};">
-              <h2>${CPUPokemonObjc.name.charAt(0).toUpperCase() + CPUPokemonObjc.name.slice(1)}</h2>
+              <h2>${CPUPokemonObjc.name}</h2>
               <span style="color: ${getContrastColor(cpuTypeColor)}">${CPUPokemonObjc.type.join("/")}</span>
             </div>
             <img src="${CPUPokemonObjc.img}" alt="${CPUPokemonObjc.name}">
@@ -202,7 +202,7 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
 
       <div class="result result-${winner}">
         <h2>${winner == "player" ? "You Won": winner == "cpu"? "You Lose": "It's a Tie"}!</h2>
-        <p>Your ${playerPokemonObjc.name.charAt(0).toUpperCase() + playerPokemonObjc.name.slice(1)} ${winner == "tie"? "and": "defeated"} ${winner == "cpu"? "by" : "the"} cpu's ${CPUPokemonObjc.name.charAt(0).toUpperCase() + CPUPokemonObjc.name.slice(1)}${winner == "tie"?" are equals":''}!</p>
+        <p>Your ${playerPokemonObjc.name} ${winner == "tie"? "and": "defeated"} ${winner == "cpu"? "by" : "the"} cpu's ${CPUPokemonObjc.name}${winner == "tie"?" are equals":''}!</p>
     </div>
 
       <button class="play-again-btn" id="playAgainBtn">Play Again</button>

@@ -23,7 +23,7 @@ export async function playGame(numberOfPokemon:number = 151):Promise<void>{
     let playerPokemon:ChosenPokemonObject = await getRandomPokemon(numberOfPokemon);
     pokeBallImg.setAttribute('src', playerPokemon.img);
     loadingElem.replaceWith(pokeBallImg);
-    pokemonName.innerText = playerPokemon.name.charAt(0).toUpperCase() + playerPokemon.name.slice(1);
+    pokemonName.innerText = playerPokemon.name;
     holdSkipDiv.classList.remove('hidden');
             
     skipBtn.addEventListener('click', async() => {
@@ -31,18 +31,24 @@ export async function playGame(numberOfPokemon:number = 151):Promise<void>{
         playerPokemon = await getRandomPokemon(numberOfPokemon);
         if(pokeBall === 0){
             throwText.innerText = 'You have no Poké Balls left!';
-            const CPUPokemon:ChosenPokemonObject = await getRandomPokemon(numberOfPokemon);
+            let CPUPokemon:ChosenPokemonObject = await getRandomPokemon(numberOfPokemon);
+            while (CPUPokemon === playerPokemon) {
+                CPUPokemon = await getRandomPokemon(numberOfPokemon);
+            }
             compareStatsVisialy(playerPokemon, CPUPokemon);
         }else{
             pokeBallImg.setAttribute('src', playerPokemon.img);
             loadingElem.replaceWith(pokeBallImg);
-            pokemonName.innerText = playerPokemon.name.charAt(0).toUpperCase() + playerPokemon.name.slice(1);
+            pokemonName.innerText = playerPokemon.name;
             ballsText.innerText = `${pokeBall}`
         }
     });
 
     holdBtn.addEventListener('click',async() =>{
-        const CPUPokemon:ChosenPokemonObject = await getRandomPokemon(numberOfPokemon);
+        let CPUPokemon:ChosenPokemonObject = await getRandomPokemon(numberOfPokemon);
+        while (CPUPokemon === playerPokemon) {
+                CPUPokemon = await getRandomPokemon(numberOfPokemon);
+            }
         compareStatsVisialy(playerPokemon, CPUPokemon);
     })
 
