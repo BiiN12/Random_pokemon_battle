@@ -11,7 +11,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 
@@ -21,8 +21,9 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* padding: 20px; */
   width: 800px;
-  height: 600px;
+  min-height: 600px;
   text-align: center;
+  margin: 20px 0;
 }
 
 .container .header {
@@ -75,9 +76,9 @@ body {
   transition: transform 0.2s ease-in-out;
 }
 
-.container img:hover {
+/* .container img:hover {
   transform: scale(1.1);
-}
+} */
 
 .container i {
   font-size: 48px;
@@ -120,6 +121,193 @@ body {
 
 .hidden {
   display: none;
+}
+
+
+/* pokemon cards */
+
+.pokemon-cards {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.vs {
+  font-size: 30px;
+  font-weight: bold;
+  color: #f0f0f0;
+}
+
+.pokemon-card {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+  width: 300px;
+  height: 300px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  /* padding: 20px; */
+  /* cursor: pointer; */
+}
+
+.pokemon-card:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+.pokemon-card img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  /* background-color: #3a80f4; */
+  width: 100%;
+  height: 70px;
+  margin-bottom: 30px;
+  /* color: #fff;
+  font-size: 24px;
+  font-weight: bold; */
+  border-radius: 8px 8px 0 0;
+}
+
+.card-header h2 {
+  /* color: #fff; */
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card-header span {
+  color: #f0f0f0;
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+.fire {
+  background-color: #dc2626;
+  color: #fff;
+}
+
+.water {
+  background-color: #368cf5;
+  color: #fff;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* background-color: #dcfce7; */
+  width: 90%;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.result-player {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.result-player p {
+  color: #166534;
+}
+
+.result-tie {
+  background-color: #f3f4f6;
+  color: #333;
+}
+
+.result-tie p {
+  color: #333;
+}
+
+.result-cpu {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.result-cpu p {
+  color: #991b1b;
+}
+
+.result h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.result p {
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 90%;
+  padding: 20px;
+  margin-top: 10px;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+}
+
+.stat p {
+  color: #333;
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+.stat .win {
+  color: #16a34a;
+  font-weight: bold;
+}
+
+.stat .loss {
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+.stat span {
+  font-weight: lighter;
+  color: #333;
+  font-size: 16px;
+}
+
+.play-again-btn {
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #3a80f4;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 20px;
+}
+
+.play-again-btn:hover {
+  background-color: #1e40af;
 }
 
 

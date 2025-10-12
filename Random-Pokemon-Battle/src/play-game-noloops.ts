@@ -10,6 +10,9 @@ export async function playGame2():Promise<void>{
     const ballsText = document.getElementById('balls') as HTMLParagraphElement;
     const throwText = document.getElementById('throw') as HTMLParagraphElement;
     const pokeBallImg = document.getElementById('pokemon-ball') as HTMLImageElement;
+
+    throwText.innerText = 'You want to hold or throw again?';
+
     const loadingElem = document.createElement('div') as HTMLDivElement;
     loadingElem.innerHTML = '<i class="fa-solid fa-spinner"></i>';
 
@@ -44,6 +47,7 @@ export async function playGame2():Promise<void>{
     })
 
 };
+
 
 // updateResults(gameResult);
 // playAgain = willPlayAgain(); --- use the play again promise instead
