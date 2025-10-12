@@ -54,6 +54,27 @@ export interface ChosenPokemonObject{
     type:string[];
 }
 
+export const typeColors = {
+      Normal: '#A8A77A',
+      Fire: '#DC2626',
+      Water: '#3B82F6',
+      Electric: '#FBBF24',
+      Grass: '#22C55E',
+      Ice: '#60A5FA',
+      Fighting: '#A52A2A',
+      Poison: '#A855F7',
+      Ground: '#EAB308',
+      Flying: '#8B5CF6',
+      Psychic: '#EC4899',
+      Bug: '#10B981',
+      Rock: '#BCAAA4',
+      Ghost: '#6B7280',
+      Dragon: '#818CF8',
+      Dark: '#374151',
+      Steel: '#6E7D8B',
+      Fairy: '#F9A8D4',
+    };
+
 function createNumArr(startNum:number, endNum:number):number[] {
     const returnArr:number[] = [];
     for (let i = startNum; i <= endNum; i++) {

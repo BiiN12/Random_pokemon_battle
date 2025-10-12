@@ -13,7 +13,8 @@ export async function getRandomPokemon(numberOfPokemon:number = 151):Promise<Cho
         }
         const data = await response.json();
         let chosenPokemon:ChosenPokemonObject = {
-                img: data.sprites.front_default,
+                // img: data.sprites.front_default,
+                img: data.sprites.other['official-artwork'].front_default, // Using official artwork for better image quality
                 name: data.name,
                 hp:data.stats[0].base_stat,
                 attack:data.stats[1].base_stat,
