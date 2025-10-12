@@ -115,7 +115,6 @@ import {typeColors} from "./type-object";
 // };
 
 
-
 export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPokemonObjc:ChosenPokemonObject):void {
   const playerStats = [playerPokemonObjc.hp, playerPokemonObjc.attack, playerPokemonObjc.defense, playerPokemonObjc.specialAttack, playerPokemonObjc.specialDefense, playerPokemonObjc.speed];
   const cpuStats = [CPUPokemonObjc.hp, CPUPokemonObjc.attack, CPUPokemonObjc.defense, CPUPokemonObjc.specialAttack, CPUPokemonObjc.specialDefense, CPUPokemonObjc.speed];
@@ -139,8 +138,6 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
   else if (playerPoints < cpuPoints) winner = "cpu";
   else winner = "tie";
 
-  // console.log(winner);
-  
   const playerFirstType = playerPokemonObjc.type[0];
   const playerTypeColor: string = typeColors[playerFirstType.charAt(0).toUpperCase() + playerFirstType.slice(1) as keyof typeof typeColors];
 
@@ -170,54 +167,68 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
         </div>
     </div>
 
-
       <div class="stats">
         <h3>Battle Stats</h3>
-        <div class="stat">
+        <div class="stat" style="opacity: 0;">
           <p>Hp:</p>
           <div><span class=${playerPokemonObjc.hp > CPUPokemonObjc.hp ? "win": ''}>${playerPokemonObjc.hp}</span> <span>vs</span> <span class=${playerPokemonObjc.hp < CPUPokemonObjc.hp? "loss":''}>${CPUPokemonObjc.hp}</span></div>
         </div>
-        <div class="stat">
+        <div class="stat" style="opacity: 0;">
           <p>Attack:</p>
           <div><span class=${playerPokemonObjc.attack > CPUPokemonObjc.attack ? "win": ''}>${playerPokemonObjc.attack}</span> <span>vs</span> <span class=${playerPokemonObjc.attack < CPUPokemonObjc.attack? "loss":''}>${CPUPokemonObjc.attack}</span></div>
         </div>
-        <div class="stat">
+        <div class="stat" style="opacity: 0;">
           <p>Defense:</p>
           <div><span class=${playerPokemonObjc.defense > CPUPokemonObjc.defense ? "win": ''}>${playerPokemonObjc.defense}</span> <span>vs</span> <span class=${playerPokemonObjc.defense < CPUPokemonObjc.defense? "loss":''}>${CPUPokemonObjc.defense}</span></div>
         </div>
-        <div class="stat">
+        <div class="stat" style="opacity: 0;">
           <p>Speed:</p>
           <div><span class=${playerPokemonObjc.speed > CPUPokemonObjc.speed? "win": ''}>${playerPokemonObjc.speed}</span> <span>vs</span> <span class=${playerPokemonObjc.speed < CPUPokemonObjc.speed? "loss":''}>${CPUPokemonObjc.speed}</span></div>
         </div>
-        <div class="stat">
+        <div class="stat" style="opacity: 0;">
           <p>Special Attack:</p>
-          <div><span class=${playerPokemonObjc.specialAttack > CPUPokemonObjc.specialAttack? "win": ''}>${playerPokemonObjc.specialAttack}</span> <span>vs</span> <span class=${playerPokemonObjc.specialAttack < CPUPokemonObjc.specialAttack? "loss":''}>${CPUPokemonObjc.specialAttack}</span></div>
+          <div><span class=${playerPokemonObjc.specialAttack > CPUPokemonObjc.specialAttack? "win": ''}>${playerPokemonObjc.specialAttack}</span> <span>vs</span> <span class=${playerPokemonObjc.specialAttack < CPUPokemonObjc.specialAttack? "loss":''}>${playerPokemonObjc.specialAttack}</span></div>
         </div>
-        <div class="stat">
+        <div class="stat" style="opacity: 0;">
           <p>Special Defense:</p>
-          <div><span class=${playerPokemonObjc.specialDefense > CPUPokemonObjc.specialDefense? "win": ''}>${playerPokemonObjc.specialDefense}</span> <span>vs</span> <span class=${playerPokemonObjc.specialDefense < CPUPokemonObjc.specialDefense? "loss":''}>${CPUPokemonObjc.specialDefense}</span></div>
+          <div><span class=${playerPokemonObjc.specialDefense > CPUPokemonObjc.specialDefense? "win": ''}>${playerPokemonObjc.specialDefense}</span> <span>vs</span> <span class=${playerPokemonObjc.specialDefense < CPUPokemonObjc.specialDefense? "loss":''}>${playerPokemonObjc.specialDefense}</span></div>
         </div>
       </div>
 
-
-      <div class="result result-${winner}">
+      <div class="result result-${winner}" style="opacity: 0;">
         <h2>${winner == "player" ? "You Won": winner == "cpu"? "You Lose": "It's a Tie"}!</h2>
         <p>Your ${playerPokemonObjc.name} ${winner == "tie"? "and": "defeated"} ${winner == "cpu"? "by" : "the"} cpu's ${CPUPokemonObjc.name}${winner == "tie"?" are equals":''}!</p>
-    </div>
+      </div>
 
-      <button class="play-again-btn" id="playAgainBtn">Play Again</button>
+      <button class="play-again-btn" id="playAgainBtn" style="opacity: 0;">Play Again</button>
 `;
 
   document.getElementById('choose-pokemon')!.innerHTML = compareHtml;
 
+  // 2 second delay for each stat to appear
+  const statElements = document.querySelectorAll('.stat');
+  statElements.forEach((stat, index) => {
+    setTimeout(() => {
+      (stat as HTMLElement).style.transition = 'opacity 0.5s ease-in-out';
+      (stat as HTMLElement).style.opacity = '1';
+    }, index * 1300);
+  });
+
+  // show the result and button
+  setTimeout(() => {
+    const resultElement = document.querySelector('.result') as HTMLElement;
+    const playAgainBtn = document.getElementById('playAgainBtn') as HTMLButtonElement;
+    resultElement.style.transition = 'opacity 0.5s ease-in-out';
+    resultElement.style.opacity = '1';
+    playAgainBtn.style.transition = 'opacity 0.5s ease-in-out';
+    playAgainBtn.style.opacity = '1';
+  }, statElements.length * 1300 + 300);
 
 
   const playAgainBtn = document.getElementById('playAgainBtn') as HTMLButtonElement;
   playAgainBtn.addEventListener('click', () => {
     window.location.reload();
   });
-  
-  
 }
 
 
