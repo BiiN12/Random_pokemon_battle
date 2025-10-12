@@ -1,6 +1,6 @@
 import type{ChosenPokemonObject} from "./type-object";
 import {typeColors} from "./type-object";
-// import {superEffectivTypes} from "./type-object";
+import {superEffectivTypes} from "./type-object";
 
 // export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPokemonObjc:ChosenPokemonObject):string {
 //     const pokeBallImg = document.getElementById('pokemon-ball') as HTMLImageElement;
@@ -44,35 +44,35 @@ import {typeColors} from "./type-object";
 //         };
 
 //         // TIE BRAKER: (will happen only if there is a tie)
-//         if(key === "type" && playerPoints === cpuPoints){
-//             keyNameTd.innerHTML = `<p>${key}: </p>`;
-//             playerTD.innerHTML = `<p>${playerPokemonObjc[key as keyof typeof playerPokemonObjc]}</p>`;
-//             cpuTD.innerHTML = `<p>${CPUPokemonObjc[key as keyof typeof CPUPokemonObjc]}</p>`;
+        // if(key === "type" && playerPoints === cpuPoints){
+        //     keyNameTd.innerHTML = `<p>${key}: </p>`;
+        //     playerTD.innerHTML = `<p>${playerPokemonObjc[key as keyof typeof playerPokemonObjc]}</p>`;
+        //     cpuTD.innerHTML = `<p>${CPUPokemonObjc[key as keyof typeof CPUPokemonObjc]}</p>`;
 
-//             playerPokemonObjc.type.forEach(playerType =>{
-//                 const playerTypesArry:string[] = superEffectivTypes[playerType as keyof typeof superEffectivTypes];
-//                 CPUPokemonObjc.type.forEach(cpuType =>{
-//                     if(playerTypesArry.includes(cpuType)){
-//                         playerPoints++
-//                     }
-//                 });
-//             });
-//             CPUPokemonObjc.type.forEach(cpuType =>{
-//                 const cpuTypesArry:string[] = superEffectivTypes[cpuType as keyof typeof superEffectivTypes];
-//                 playerPokemonObjc.type.forEach(playerType =>{
-//                     if(cpuTypesArry.includes(playerType)){
-//                         cpuPoints++
-//                     }
-//                 });
-//             });
-//             if (playerPoints > cpuPoints) {
-//                 winnerTD.innerHTML = `<p>${playerPokemonObjc.name} Wins</p>`;
-//             }else if(playerPoints < cpuPoints){
-//                 winnerTD.innerHTML = `<p>${CPUPokemonObjc.name} Wins</p>`;
-//             }else{
-//                 winnerTD.innerHTML = `<p>Its a Tie</p>`;
-//             }
-//         }
+        //     playerPokemonObjc.type.forEach(playerType =>{
+        //         const playerTypesArry:string[] = superEffectivTypes[playerType as keyof typeof superEffectivTypes];
+        //         CPUPokemonObjc.type.forEach(cpuType =>{
+        //             if(playerTypesArry.includes(cpuType)){
+        //                 playerPoints++
+        //             }
+        //         });
+        //     });
+        //     CPUPokemonObjc.type.forEach(cpuType =>{
+        //         const cpuTypesArry:string[] = superEffectivTypes[cpuType as keyof typeof superEffectivTypes];
+        //         playerPokemonObjc.type.forEach(playerType =>{
+        //             if(cpuTypesArry.includes(playerType)){
+        //                 cpuPoints++
+        //             }
+        //         });
+        //     });
+        //     if (playerPoints > cpuPoints) {
+        //         winnerTD.innerHTML = `<p>${playerPokemonObjc.name} Wins</p>`;
+        //     }else if(playerPoints < cpuPoints){
+        //         winnerTD.innerHTML = `<p>${CPUPokemonObjc.name} Wins</p>`;
+        //     }else{
+        //         winnerTD.innerHTML = `<p>Its a Tie</p>`;
+        //     }
+        // }
 
 //         // dysplaying all the battle on the WEB PAGE:
 //         holdSkipDiv.classList.add('hidden');
@@ -114,6 +114,8 @@ import {typeColors} from "./type-object";
 //     }
 // };
 
+ 
+
 
 export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPokemonObjc:ChosenPokemonObject):void {
   const playerStats = [playerPokemonObjc.hp, playerPokemonObjc.attack, playerPokemonObjc.defense, playerPokemonObjc.specialAttack, playerPokemonObjc.specialDefense, playerPokemonObjc.speed];
@@ -130,13 +132,42 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
     }
   }
 
+  function typeBattle(pokemonobjct1:ChosenPokemonObject, pokemonobjct2:ChosenPokemonObject):string {
+              pokemonobjct1.type.forEach(playerType =>{
+                  const playerTypesArry:string[] = superEffectivTypes[playerType as keyof typeof superEffectivTypes];
+                  pokemonobjct2.type.forEach(cpuType =>{
+                      if(playerTypesArry.includes(cpuType)){
+                          playerPoints++
+                      }
+                  });
+              });
+              pokemonobjct2.type.forEach(cpuType =>{
+                  const cpuTypesArry:string[] = superEffectivTypes[cpuType as keyof typeof superEffectivTypes];
+                  pokemonobjct1.type.forEach(playerType =>{
+                      if(cpuTypesArry.includes(playerType)){
+                          cpuPoints++
+                      }
+                  });
+              });
+              if (playerPoints > cpuPoints) {
+                   return`${playerPokemonObjc.name} Wins`;
+              }else if(playerPoints < cpuPoints){
+                   return `${CPUPokemonObjc.name} Wins`;
+              }else{
+                   return`Its a Tie`;
+              }
+        }
   console.log(`Player Points: ${playerPoints}, CPU Points: ${cpuPoints}`);
 
   let winner: string;
 
   if (playerPoints > cpuPoints) winner = "player";
   else if (playerPoints < cpuPoints) winner = "cpu";
-  else winner = "tie";
+  else{
+         
+    winner = "tie";
+
+  } 
 
   const playerFirstType = playerPokemonObjc.type[0];
   const playerTypeColor: string = typeColors[playerFirstType.charAt(0).toUpperCase() + playerFirstType.slice(1) as keyof typeof typeColors];
@@ -193,6 +224,11 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
           <p>Special Defense:</p>
           <div><span class=${playerPokemonObjc.specialDefense > CPUPokemonObjc.specialDefense? "win": ''}>${playerPokemonObjc.specialDefense}</span> <span>vs</span> <span class=${playerPokemonObjc.specialDefense < CPUPokemonObjc.specialDefense? "loss":''}>${playerPokemonObjc.specialDefense}</span></div>
         </div>
+        <div class="stat hidden" style="opacity: 0;">
+          <p><strong>Tie Breaker:</strong></p>
+          <p>${typeBattle(playerPokemonObjc,CPUPokemonObjc)}</p>
+        </div>
+
       </div>
 
       <div class="result result-${winner}" style="opacity: 0;">
@@ -247,3 +283,4 @@ function getContrastColor(hexColor: string): string {
   // Return white text for dark backgrounds, black text for light backgrounds
   return luminance > 0.5 ? "#000000" : "#FFFFFF";
 }
+
