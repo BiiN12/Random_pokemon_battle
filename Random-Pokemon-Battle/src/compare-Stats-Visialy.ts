@@ -120,13 +120,23 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
   const playerStats = [playerPokemonObjc.hp, playerPokemonObjc.attack, playerPokemonObjc.defense, playerPokemonObjc.specialAttack, playerPokemonObjc.specialDefense, playerPokemonObjc.speed];
   const cpuStats = [CPUPokemonObjc.hp, CPUPokemonObjc.attack, CPUPokemonObjc.defense, CPUPokemonObjc.specialAttack, CPUPokemonObjc.specialDefense, CPUPokemonObjc.speed];
 
-  const playerTotal: number = playerStats.reduce((acc, stat) => acc + stat, 0);
-  const cpuTotal: number = cpuStats.reduce((acc, stat) => acc + stat, 0);
-  // console.log(playerTotal, cpuTotal);
+  let playerPoints: number = 0;
+  let cpuPoints: number = 0;
+  for (const stat of playerStats) {
+    if (stat > cpuStats[playerStats.indexOf(stat)]) {
+      playerPoints++;
+    }
+    else if (stat < cpuStats[playerStats.indexOf(stat)]) {
+      cpuPoints++;
+    }
+  }
+
+  console.log(`Player Points: ${playerPoints}, CPU Points: ${cpuPoints}`);
+
   let winner: string;
 
-  if (playerTotal > cpuTotal) winner = "player";
-  else if (playerTotal < cpuTotal) winner = "cpu";
+  if (playerPoints > cpuPoints) winner = "player";
+  else if (playerPoints < cpuPoints) winner = "cpu";
   else winner = "tie";
 
   // console.log(winner);
@@ -191,8 +201,8 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
 
 
       <div class="result result-${winner}">
-        <h2>You ${winner == "player" ? "Won": "Lose"}!</h2>
-        <p>Your ${playerPokemonObjc.name.toUpperCase()} defeated ${winner == "player"? "the" : "by"} cpu's ${CPUPokemonObjc.name.toUpperCase()}!</p>
+        <h2>${winner == "player" ? "You Won": winner == "cpu"? "You Lose": "It's a Tie"}!</h2>
+        <p>Your ${playerPokemonObjc.name} ${winner == "tie"? "and": "defeated"} ${winner == "cpu"? "by" : "the"} cpu's ${CPUPokemonObjc.name}${winner == "tie"?" are equals":''}!</p>
     </div>
 
       <button class="play-again-btn" id="playAgainBtn">Play Again</button>
@@ -201,7 +211,7 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
   document.getElementById('choose-pokemon')!.innerHTML = compareHtml;
 
 
-  
+
   const playAgainBtn = document.getElementById('playAgainBtn') as HTMLButtonElement;
   playAgainBtn.addEventListener('click', () => {
     window.location.reload();
