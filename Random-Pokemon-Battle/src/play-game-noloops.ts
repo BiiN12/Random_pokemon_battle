@@ -2,7 +2,7 @@ import type{ChosenPokemonObject} from "./type-object";
 import {compareStatsVisialy} from "./compare-Stats-Visialy.ts";
 import {getRandomPokemon} from "./get-Random-Pokemon.ts";
 
-export async function playGame2(numberOfPokemon:number = 151):Promise<void>{
+export async function playGame(numberOfPokemon:number = 151):Promise<void>{
     const holdSkipDiv = document.getElementById('hold-skip') as HTMLDivElement;
     const holdBtn = document.getElementById('hold-btn') as HTMLButtonElement;
     const skipBtn = document.getElementById('skip-btn') as HTMLButtonElement;

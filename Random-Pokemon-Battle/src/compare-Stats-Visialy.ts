@@ -144,7 +144,7 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
         <div class="pokemon-cards">
           <div class="pokemon-card">
             <div class="card-header" style="background-color: ${playerTypeColor}; color: ${getContrastColor(playerTypeColor)};">
-              <h2>${playerPokemonObjc.name}</h2>
+              <h2>${playerPokemonObjc.name.toUpperCase()}</h2>
               <span style="color: ${getContrastColor(playerTypeColor)}">${playerPokemonObjc.type.join("/")}</span>
             </div>
             <img src="${playerPokemonObjc.img}" alt="${playerPokemonObjc.name}" >
@@ -152,7 +152,7 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
           <span class="vs">Vs</span>
           <div class="pokemon-card">
             <div class="card-header" style="background-color: ${cpuTypeColor}; color: ${getContrastColor(cpuTypeColor)};">
-              <h2>${CPUPokemonObjc.name}</h2>
+              <h2>${CPUPokemonObjc.name.toUpperCase()}</h2>
               <span style="color: ${getContrastColor(cpuTypeColor)}">${CPUPokemonObjc.type.join("/")}</span>
             </div>
             <img src="${CPUPokemonObjc.img}" alt="${CPUPokemonObjc.name}">
@@ -192,7 +192,7 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
 
       <div class="result result-${winner}">
         <h2>You ${winner == "player" ? "Won": "Lose"}!</h2>
-        <p>Your ${playerPokemonObjc.name} defeated ${winner == "player"? "the" : "by"} cpu's ${CPUPokemonObjc.name}!</p>
+        <p>Your ${playerPokemonObjc.name.toUpperCase()} defeated ${winner == "player"? "the" : "by"} cpu's ${CPUPokemonObjc.name.toUpperCase()}!</p>
     </div>
 
       <button class="play-again-btn" id="playAgainBtn">Play Again</button>
