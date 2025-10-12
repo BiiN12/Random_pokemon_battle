@@ -23,7 +23,7 @@ export async function playGame(numberOfPokemon:number = 151):Promise<void>{
     let playerPokemon:ChosenPokemonObject = await getRandomPokemon(numberOfPokemon);
     pokeBallImg.setAttribute('src', playerPokemon.img);
     loadingElem.replaceWith(pokeBallImg);
-    pokemonName.innerText = playerPokemon.name;
+    pokemonName.innerText = playerPokemon.name.charAt(0).toUpperCase() + playerPokemon.name.slice(1);
     holdSkipDiv.classList.remove('hidden');
             
     skipBtn.addEventListener('click', async() => {
@@ -36,7 +36,7 @@ export async function playGame(numberOfPokemon:number = 151):Promise<void>{
         }else{
             pokeBallImg.setAttribute('src', playerPokemon.img);
             loadingElem.replaceWith(pokeBallImg);
-            pokemonName.innerText = playerPokemon.name;
+            pokemonName.innerText = playerPokemon.name.charAt(0).toUpperCase() + playerPokemon.name.slice(1);
             ballsText.innerText = `${pokeBall}`
         }
     });
