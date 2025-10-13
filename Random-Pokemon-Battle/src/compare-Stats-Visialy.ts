@@ -259,7 +259,9 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
       <button class="play-again-btn" id="playAgainBtn" style="opacity: 0;">Play Again</button>
 `;
 
+
   document.getElementById('choose-pokemon')!.innerHTML = compareHtml;
+  
 
   // 2 second delay for each stat to appear
   const statElements = document.querySelectorAll('.stat');
