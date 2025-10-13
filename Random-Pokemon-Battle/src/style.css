@@ -224,15 +224,6 @@ body {
   font-weight: lighter;
 }
 
-.fire {
-  background-color: #dc2626;
-  color: #fff;
-}
-
-.water {
-  background-color: #368cf5;
-  color: #fff;
-}
 
 .result {
   display: flex;
