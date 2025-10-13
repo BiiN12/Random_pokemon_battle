@@ -122,12 +122,13 @@ body {
 .hidden {
   display: none;
 }
-#gen-buttons-div{
+
+#gen-buttons-div {
   display: flex;
   gap: 5px;
 }
 
-#gen-buttons-div .gen-button{
+#gen-buttons-div .gen-button {
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
@@ -136,20 +137,22 @@ body {
   transition: background-color 0.2s ease-in-out;
 }
 
-.gen-button{
+.gen-button {
   color: #fff;
   background-color: #3a80f4;
   padding: 10px 30px;
 }
 
-.gen-button:hover{
+.gen-button:hover {
   border: #333 solid 2px;
   background-color: #1e5edb;
 }
-.gen-button-pressed{
+
+.gen-button-pressed {
   background-color: #166534;
 }
-.gen-button-pressed:hover{
+
+.gen-button-pressed:hover {
   background-color: #258649;
 }
 

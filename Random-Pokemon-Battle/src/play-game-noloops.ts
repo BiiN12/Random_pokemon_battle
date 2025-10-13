@@ -26,7 +26,7 @@ export async function playGame(numberOfPokemon:number[] = firstGen):Promise<void
     pokeBallImg.replaceWith(loadingElem);
     setTimeout(() => {
         loadingElem.replaceWith(pokeBallImg);
-    }, 800);
+    }, 1000);
     displayPokemon();
             
     skipBtn.addEventListener('click', async() => {
@@ -50,7 +50,7 @@ export async function playGame(numberOfPokemon:number[] = firstGen):Promise<void
             setTimeout(() => {
                 // show the stats comparison
                 compareStatsVisialy(playerPokemon, CPUPokemon);
-            }, 5000);
+            }, 4000);
         }else{
             pokeBallImg.replaceWith(loadingElem);
             setTimeout(() => {
@@ -78,7 +78,7 @@ export async function playGame(numberOfPokemon:number[] = firstGen):Promise<void
         setTimeout(() => {
             // show the stats comparison
             compareStatsVisialy(playerPokemon, CPUPokemon);
-        }, 5000);
+        }, 4000);
     })
 
 
