@@ -74,3 +74,34 @@ export const typeColors = {
       Steel: '#6E7D8B',
       Fairy: '#F9A8D4',
     };
+
+function createNumArr(startNum:number, endNum:number):number[] {
+    const returnArr:number[] = [];
+    for (let i = startNum; i <= endNum; i++) {
+        returnArr.push(i)
+    }
+    return returnArr;
+}
+interface Generation{
+    Gen1: number[];
+    Gen2: number[];
+    Gen3: number[];
+    Gen4: number[];
+    Gen5: number[];
+    Gen6: number[];
+    Gen7: number[];
+    Gen8: number[];
+    Gen9: number[];
+}
+export const generationObj:Generation= {
+   Gen1: createNumArr(1,151),
+   Gen2: createNumArr(152,251),
+   Gen3: createNumArr(252,386),
+   Gen4: createNumArr(387,493),
+   Gen5: createNumArr(494,649),
+   Gen6: createNumArr(650,721),
+   Gen7: createNumArr(722,809),
+   Gen8: createNumArr(810,905),
+   Gen9: createNumArr(906,1025)
+}
+

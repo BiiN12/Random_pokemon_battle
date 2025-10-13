@@ -1,8 +1,10 @@
 import type{ChosenPokemonObject} from "./type-object";
 import {compareStatsVisialy} from "./compare-Stats-Visialy.ts";
 import {getRandomPokemon} from "./get-Random-Pokemon.ts";
+import {generationObj} from "./type-object.ts";
 
-export async function playGame2():Promise<void>{
+const firstGen:number[] = generationObj.Gen1;
+export async function playGame(numberOfPokemon:number[] = firstGen):Promise<void>{
     const holdSkipDiv = document.getElementById('hold-skip') as HTMLDivElement;
     const holdBtn = document.getElementById('hold-btn') as HTMLButtonElement;
     const skipBtn = document.getElementById('skip-btn') as HTMLButtonElement;
@@ -20,7 +22,7 @@ export async function playGame2():Promise<void>{
 
     let pokeBall:number = 2;
     ballsText.innerText = `${pokeBall}`
-    let playerPokemon:ChosenPokemonObject = await getRandomPokemon();
+    let playerPokemon:ChosenPokemonObject = await getRandomPokemon(numberOfPokemon);
     pokeBallImg.setAttribute('src', playerPokemon.img);
     loadingElem.replaceWith(pokeBallImg);
     pokemonName.innerText = playerPokemon.name;
@@ -28,10 +30,13 @@ export async function playGame2():Promise<void>{
             
     skipBtn.addEventListener('click', async() => {
         --pokeBall;
-        playerPokemon = await getRandomPokemon();
+        playerPokemon = await getRandomPokemon(numberOfPokemon);
         if(pokeBall === 0){
             throwText.innerText = 'You have no Poké Balls left!';
-            const CPUPokemon:ChosenPokemonObject = await getRandomPokemon();
+            let CPUPokemon:ChosenPokemonObject = await getRandomPokemon(numberOfPokemon);
+            while (CPUPokemon === playerPokemon) {
+                CPUPokemon = await getRandomPokemon(numberOfPokemon);
+            }
             compareStatsVisialy(playerPokemon, CPUPokemon);
         }else{
             pokeBallImg.setAttribute('src', playerPokemon.img);
@@ -42,7 +47,10 @@ export async function playGame2():Promise<void>{
     });
 
     holdBtn.addEventListener('click',async() =>{
-        const CPUPokemon:ChosenPokemonObject = await getRandomPokemon();
+        let CPUPokemon:ChosenPokemonObject = await getRandomPokemon(numberOfPokemon);
+        while (CPUPokemon === playerPokemon) {
+                CPUPokemon = await getRandomPokemon(numberOfPokemon);
+            }
         compareStatsVisialy(playerPokemon, CPUPokemon);
     })
 
