@@ -33,9 +33,11 @@ pokeBallImg.addEventListener('click', () => {
         const firstGen:number[] = generationObj.Gen1; 
         playGame(firstGen)
         // playGame([25,120]) - test tie braker (pikachu and staryu)
+        // playGame([54,111]) -test tie braker (psyduck and ryhorn)
     }else{
         playGame(returnPokemonNumArry);
         // playGame([25,120]) - test tie braker (pikachu and staryu)
+        // playGame([54,111]) -test tie braker (psyduck and ryhorn)
     }
     
 }, { once: true });
