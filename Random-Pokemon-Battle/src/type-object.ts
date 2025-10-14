@@ -1,5 +1,3 @@
-
-
 interface PokemonTypes{
     fire: string[];
     water: string[];
