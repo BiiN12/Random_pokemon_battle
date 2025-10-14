@@ -15,7 +15,7 @@ Random Pokémon Battle is an interactive web-based game where players can catch 
 
 ## 🎮 Live Demo
 
-🚀 **[Play the Game Now!](your-live-demo-url-here)**
+🚀 **[Play the Game Now!](https://random-pokemon-battle.netlify.app/)**
 
 _Experience the thrill of random Pokémon battles directly in your browser!_
 
