@@ -158,7 +158,7 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
     resultElement.style.opacity = '1';
     playAgainBtn.style.transition = 'opacity 0.5s ease-in-out';
     playAgainBtn.style.opacity = '1';
-  }, statElements.length * 1300 + 100);
+  }, statElements.length * 1000 + 500);
 
 
   const playAgainBtn = document.getElementById('playAgainBtn') as HTMLButtonElement;
