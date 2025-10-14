@@ -156,38 +156,39 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
     showTieBreaker = true;
     tieResult = typeBattle(playerPokemonObjc, CPUPokemonObjc);
   }
-  let playerTypeMessegeString:string="";
-  let cpuTypeMessegeString:string="";
+  
   function typeBattle(pokemonobjct1:ChosenPokemonObject, pokemonobjct2:ChosenPokemonObject):string {
-              pokemonobjct1.type.forEach(playerType =>{
-                  const playerTypesArry:string[] = superEffectivTypes[playerType as keyof typeof superEffectivTypes];
-                  pokemonobjct2.type.forEach(cpuType =>{
-                      if(playerTypesArry.includes(cpuType)){
-                        playerTypeMessegeString+=`${playerType} is SuperEffective againts ${cpuType} `
-                          playerPoints++
-                      }
-                  });
-              });
-              pokemonobjct2.type.forEach(cpuType =>{
-                  const cpuTypesArry:string[] = superEffectivTypes[cpuType as keyof typeof superEffectivTypes];
-                  pokemonobjct1.type.forEach(playerType =>{
-                      if(cpuTypesArry.includes(playerType)){
-                        cpuTypeMessegeString+=`${cpuType} is Super Effective againts ${playerType}`
-                          cpuPoints++
-                      }
-                  });
-              });
-              if (playerPoints > cpuPoints) {
-                  winner = "player";
-                  return ` ${pokemonobjct1.name} ${playerTypeMessegeString}`;
-              }else if(playerPoints < cpuPoints){
-                  winner = "cpu";
-                  return `${pokemonobjct2.name} ${cpuTypeMessegeString}`;
-              }else{
-                  winner = "tie";
-                  return "None of the Types are Super Effective";
-              }
-        }
+    let playerTypeMessegeString:string="";
+    let cpuTypeMessegeString:string="";
+    pokemonobjct1.type.forEach(playerType =>{
+        const playerTypesArry:string[] = superEffectivTypes[playerType as keyof typeof superEffectivTypes];
+        pokemonobjct2.type.forEach(cpuType =>{
+            if(playerTypesArry.includes(cpuType)){
+              playerTypeMessegeString+=`${playerType.charAt(0).toUpperCase() + playerType.slice(1)} Type is SuperEffective againts ${pokemonobjct2.name}'s ${cpuType.charAt(0).toUpperCase() + cpuType.slice(1)} Type `
+                playerPoints++
+            }
+        });
+    });
+    pokemonobjct2.type.forEach(cpuType =>{
+        const cpuTypesArry:string[] = superEffectivTypes[cpuType as keyof typeof superEffectivTypes];
+        pokemonobjct1.type.forEach(playerType =>{
+            if(cpuTypesArry.includes(playerType)){
+              cpuTypeMessegeString+=`${cpuType.charAt(0).toUpperCase() + cpuType.slice(1)} Type is SuperEffective againts ${pokemonobjct1.name}'s ${playerType.charAt(0).toUpperCase() + playerType.slice(1)} Type`
+                cpuPoints++
+            }
+        });
+    });
+    if (playerPoints > cpuPoints) {
+        winner = "player";
+        return `<span class="win"> ${pokemonobjct1.name}'s ${playerTypeMessegeString}</span>`;
+    }else if(playerPoints < cpuPoints){
+        winner = "cpu";
+        return `<span class="loss"> ${pokemonobjct2.name}'s ${cpuTypeMessegeString}</span>`;
+    }else{
+        winner = "tie";
+        return "<span>There is no advantage on Super Effective Types</span>";
+    }
+  }
 
   console.log(`Player Points: ${playerPoints}, CPU Points: ${cpuPoints}`);
 
@@ -246,7 +247,7 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
         </div>
         <div class="stat" style="display: ${showTieBreaker? "flex" : "none"}; opacity: 0;">
           <p><strong>Tie Breaker:</strong></p>
-          <div><span>${tieResult}</span></div>
+          <div>${tieResult}</div>
         </div>
 
       </div>
