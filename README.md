@@ -8,7 +8,7 @@ Random Pokémon Battle is an interactive web-based game where players can catch 
 
 **Developers:**
 
-- [Amit](https://github.com/TeaTimeJack)
+- [Amit Jackson](https://github.com/TeaTimeJack)
 - [Biniyam](https://github.com/BiiN12)
 
 **Timeline:** 1 week intensive development during Developers Institute Bootcamp Hackathon
@@ -30,7 +30,7 @@ _Experience the thrill of random Pokémon battles directly in your browser!_
 - **Type Effectiveness**: Advanced tie-breaker system using Pokémon type advantages
 - **Visual Battle Interface**: Beautiful cards showing Pokémon images, types, and stats
 - **Animated Transitions**: Smooth loading animations and stat reveals
-- **Responsive Design**: Works perfectly on desktop and mobile devices
+- **Responsive Design**: Works perfectly on desktop and mobile devices //i dont think its responsive enough...
 
 ### Game Mechanics
 
@@ -53,7 +53,7 @@ _Experience the thrill of random Pokémon battles directly in your browser!_
 - **Build Tool**: Vite
 - **API**: PokéAPI (https://pokeapi.co/)
 - **Icons**: Font Awesome
-- **Styling**: Custom CSS with responsive design
+- **Styling**: Custom CSS with responsive design //i dont think its responsive enough...
 
 ## 📁 Project Structure
 
@@ -75,6 +75,8 @@ Random_pokemon_battle/
 ├── PRG-task-manager.docx          # Development progress tracking
 └── Pokemon-random-game-idea.docx  # Initial game concept
 ```
+//we have a file in the reprosetory that we are not using, we can delete it - "choose-generation.ts" - that code is in the Main.ts file
+
 
 ## 🚀 Getting Started
 
@@ -214,7 +216,7 @@ This project uses the [PokéAPI](https://pokeapi.co/) to fetch Pokémon data:
 
 ## 📜 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. // this link outcome is 404...
 
 ## 🙏 Acknowledgments
 
@@ -226,8 +228,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-**Biniyam** - [biniyameshete12@gmail.com](mailto:biniyameshete12@gmail.com)  
-**Amit** - [amitjack14@gmail.com](mailto:amitjack14@gmail.com)
+**Biniyam** - [biniyameshete12@gmail.com](mailto:biniyameshete12@gmail.com)  //add your linkedin too 
+**Amit Jackson - Email** - [amitjack14@gmail.com](mailto:amitjack14@gmail.com)
+**[Amit Jackson - LinkedIn](www.linkedin.com/in/amit-jackson)** 
 
 **Project Link**: [https://github.com/BiiN12/random-pokemon-battle](https://github.com/BiiN12/Random_pokemon_battle)
 
