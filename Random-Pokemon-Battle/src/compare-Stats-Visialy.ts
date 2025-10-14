@@ -37,11 +37,24 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
   function typeBattle(pokemonobjct1:ChosenPokemonObject, pokemonobjct2:ChosenPokemonObject):string {
     let playerTypeMessegeString:string="";
     let cpuTypeMessegeString:string="";
+    let winningTypesPlayer:string="";
+    let winningTypesCPU:string="";
+    let isSuperEffectivePlayer:boolean = false;
+    let isSuperEffectiveCPU:boolean = false;
     pokemonobjct1.type.forEach(playerType =>{
         const playerTypesArry:string[] = superEffectivTypes[playerType as keyof typeof superEffectivTypes];
         pokemonobjct2.type.forEach(cpuType =>{
             if(playerTypesArry.includes(cpuType)){
-              playerTypeMessegeString+=`${playerType.charAt(0).toUpperCase() + playerType.slice(1)} Type is SuperEffective againts ${pokemonobjct2.name}'s ${cpuType.charAt(0).toUpperCase() + cpuType.slice(1)} Type `
+              if (!isSuperEffectivePlayer) {
+                winningTypesPlayer = `${playerType.charAt(0).toUpperCase() + playerType.slice(1)}`;
+                playerTypeMessegeString =`${winningTypesPlayer} Type is SuperEffective againts ${pokemonobjct2.name}`
+                isSuperEffectivePlayer = true;
+              }else{
+                if (`${playerType.charAt(0).toUpperCase() + playerType.slice(1)}` !== winningTypesPlayer) {
+                  winningTypesPlayer += ` and ${playerType.charAt(0).toUpperCase() + playerType.slice(1)}`;
+                  playerTypeMessegeString =`${winningTypesPlayer} Types are SuperEffective againts ${pokemonobjct2.name}`
+                }
+              }
                 playerPoints++
             }
         });
@@ -50,7 +63,16 @@ export function compareStatsVisialy(playerPokemonObjc:ChosenPokemonObject, CPUPo
         const cpuTypesArry:string[] = superEffectivTypes[cpuType as keyof typeof superEffectivTypes];
         pokemonobjct1.type.forEach(playerType =>{
             if(cpuTypesArry.includes(playerType)){
-              cpuTypeMessegeString+=`${cpuType.charAt(0).toUpperCase() + cpuType.slice(1)} Type is SuperEffective againts ${pokemonobjct1.name}'s ${playerType.charAt(0).toUpperCase() + playerType.slice(1)} Type`
+              if (!isSuperEffectiveCPU) {
+                winningTypesCPU = `${cpuType.charAt(0).toUpperCase() + cpuType.slice(1)}`
+                cpuTypeMessegeString =`${winningTypesCPU} Type is SuperEffective againts ${pokemonobjct1.name}`
+                isSuperEffectiveCPU = true;
+              }else{
+                if(`${cpuType.charAt(0).toUpperCase() + cpuType.slice(1)}` !== winningTypesCPU){
+                  winningTypesCPU += ` and ${cpuType.charAt(0).toUpperCase() + cpuType.slice(1)}`
+                  cpuTypeMessegeString =`${winningTypesCPU} Types are SuperEffective againts ${pokemonobjct1.name}`
+                }
+              }
                 cpuPoints++
             }
         });
