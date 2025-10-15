@@ -222,7 +222,7 @@ This project uses the [PokéAPI](https://pokeapi.co/) to fetch Pokémon data:
 
 ## 📞 Contact
 
-**Biniyam** - [biniyameshete12@gmail.com](mailto:biniyameshete12@gmail.com) / [Linkedin](www.linkedin.com/in/biniyam-belete-biin12)  
+**Biniyam** - [biniyameshete12@gmail.com](mailto:biniyameshete12@gmail.com) / [Linkedin](https://www.linkedin.com/in/biniyam-belete-biin12/)  
 **Amit Jackson** - [amitjack14@gmail.com](mailto:amitjack14@gmail.com) / [Linkedin](http://www.linkedin.com/in/amit-jackson)
 
 **Project Link**: [https://github.com/BiiN12/random-pokemon-battle](https://github.com/BiiN12/Random_pokemon_battle)
