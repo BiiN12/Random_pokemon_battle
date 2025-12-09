@@ -1,4 +1,4 @@
-import './style.css'
+import './styleRes.css'
 import {playGame} from "./play-game-noloops.ts"
 import {generationObj} from "./type-object.ts";
 

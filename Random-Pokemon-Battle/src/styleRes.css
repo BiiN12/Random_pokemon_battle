@@ -1,0 +1,447 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #3a80f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Adjusting min-height to allow scrolling on small devices */
+  min-height: 100vh;
+}
+
+
+.container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Changed fixed width to max-width for responsiveness */
+  width: 95%; 
+  max-width: 800px;
+  min-height: 600px;
+  text-align: center;
+  margin: 20px auto; /* Centering the container */
+}
+
+.container .header {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #f0f0f0;
+  background-color: #dc2626;
+  padding: 20px;
+  border-radius: 8px 8px 0 0;
+}
+
+.container .choose-pokemon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  padding: 20px 0 20px 0;
+  color: #333;
+}
+
+.container h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.container p {
+  margin-bottom: 10px;
+  color: #666;
+}
+
+.container span {
+  font-weight: bold;
+  color: #333;
+}
+
+.container p:last-child {
+  margin-bottom: 0;
+}
+
+.container img {
+  /* Reduced size slightly for better fit on small screens */
+  width: 130px; 
+  height: 130px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* .container img:hover {
+  transform: scale(1.1);
+} */
+
+.container i {
+  font-size: 48px;
+  margin: 10px;
+  animation: spin 2s linear infinite;
+}
+
+.hold-skip {
+  display: flex;
+  /* Added wrap for better mobile fit if buttons are wide */
+  flex-wrap: wrap; 
+  justify-content: center;
+  gap: 30px;
+}
+
+.hold-skip button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #3a80f4;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.hold-skip button:hover {
+  background-color: #1e5edb;
+}
+
+.hold-skip .hold-btn {
+  color: #fff;
+  background-color: #3a80f4;
+  padding: 10px 30px;
+}
+
+.hold-skip .skip-btn {
+  color: #333;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+}
+
+.hidden {
+  display: none;
+}
+
+#gen-buttons-div {
+  display: flex;
+  /* Allows buttons to wrap to the next line on small screens */
+  flex-wrap: wrap; 
+  justify-content: center;
+  gap: 5px;
+  /* Added padding to prevent buttons from hitting the edge */
+  padding: 0 10px; 
+}
+
+#gen-buttons-div .gen-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  /* Ensures buttons don't get too wide on small screens */
+  flex-grow: 1; 
+  min-width: 80px;
+}
+
+.gen-button {
+  color: #fff;
+  background-color: #3a80f4;
+  padding: 10px 15px; /* Slightly reduced padding for tighter fit */
+  /* Added border for consistency */
+  border: none; 
+}
+
+.gen-button:hover {
+  border: #333 solid 2px;
+  background-color: #1e5edb;
+}
+
+.gen-button-pressed {
+  background-color: #166534;
+}
+
+.gen-button-pressed:hover {
+  background-color: #258649;
+}
+
+
+
+/* pokemon cards */
+
+.pokemon-cards {
+  display: flex;
+  /* Changed to space-around to ensure cards aren't too close to the edges */
+  justify-content: space-around; 
+  align-items: center;
+  gap: 10px; /* Reduced gap for smaller screens */
+  margin: 20px 0;
+  padding: 0 10px; /* Added padding */
+}
+
+.vs {
+  font-size: 30px;
+  font-weight: bold;
+  /* Changed color to a dark gray for better contrast on white background */
+  color: #333; 
+}
+
+.pokemon-card {
+  /* Changed fixed width/height to flexible width and max-width */
+  width: 45%; 
+  max-width: 300px;
+  height: auto;
+  min-height: 250px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.pokemon-card:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+.pokemon-card img {
+  /* Using a percentage for image size relative to the card */
+  width: 50%; 
+  height: auto;
+  max-width: 150px; /* Max size of the image */
+  max-height: 150px; 
+  margin-bottom: 10px;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  height: 70px;
+  margin-bottom: 30px;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-header h2 {
+  font-size: 20px; /* Slightly reduced font size */
+  font-weight: bold;
+}
+
+.card-header span {
+  color: #f0f0f0;
+  font-size: 14px; /* Slightly reduced font size */
+  font-weight: lighter;
+}
+
+
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 90%;
+  padding: 15px; /* Reduced padding */
+  margin: 0 auto; /* Centering */
+  border-radius: 8px;
+}
+
+.result-player {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.result-player p {
+  color: #166534;
+}
+
+.result-tie {
+  background-color: #f3f4f6;
+  color: #333;
+}
+
+.result-tie p {
+  color: #333;
+}
+
+.result-cpu {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.result-cpu p {
+  color: #991b1b;
+}
+
+.result h2 {
+  font-size: 22px; /* Reduced font size */
+  font-weight: bold;
+}
+
+.result p {
+  font-size: 14px; /* Reduced font size */
+  font-weight: lighter;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 90%;
+  padding: 15px; /* Reduced padding */
+  margin: 10px auto 0; /* Centering and adjusting margin */
+  background-color: #f3f4f6;
+  border-radius: 8px;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  width: 90%; /* Increased width for better use of space */
+}
+
+.stat p, .stat span {
+  color: #333;
+  font-size: 14px; /* Reduced font size */
+  font-weight: lighter;
+}
+
+.stat .win {
+  color: #16a34a;
+  font-weight: bold;
+}
+
+.stat .loss {
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+.play-again-btn {
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #3a80f4;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 20px;
+  margin-bottom: 20px; /* Added margin to the bottom */
+}
+
+.play-again-btn:hover {
+  background-color: #1e40af;
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ------------------------------------------- */
+/* RESPONSIVE MEDIA QUERIES          */
+/* ------------------------------------------- */
+
+/* Styles for screens smaller than 600px (typical mobile portrait) */
+@media (max-width: 600px) {
+  
+  .container .header {
+    font-size: 24px;
+    padding: 15px;
+  }
+  
+  .container .choose-pokemon {
+    font-size: 18px;
+    padding: 15px 0;
+  }
+  
+  .container img {
+    width: 100px; 
+    height: 100px;
+  }
+
+  /* Force Pokemon cards into a single column layout */
+  .pokemon-cards {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 5px;
+  }
+
+  .vs {
+    /* Hide the "Vs" text in the main battle view on mobile for better flow */
+    display: none; 
+  }
+
+  .pokemon-card {
+    /* Full width on mobile */
+    width: 90%; 
+    max-width: none; 
+    min-height: auto;
+  }
+
+  .pokemon-card img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .card-header {
+    margin-bottom: 15px;
+    height: 60px;
+  }
+
+  .card-header h2 {
+    font-size: 18px;
+  }
+
+  .stats {
+    width: 95%;
+  }
+
+  .stat {
+    width: 100%;
+    /* Use smaller font for stats */
+    font-size: 13px;
+  }
+  
+  .stat p, .stat span {
+    font-size: 13px;
+  }
+}
+
+/* Styles for screens smaller than 400px (small mobile) */
+@media (max-width: 400px) {
+  
+  #gen-buttons-div .gen-button {
+    /* Allow generation buttons to take up available space more evenly */
+    flex-basis: calc(50% - 5px); 
+    padding: 8px 10px;
+    font-size: 14px;
+    min-width: unset;
+  }
+  
+  .hold-skip button {
+    /* Ensure hold/skip buttons fit better side-by-side */
+    flex-grow: 1; 
+  }
+  
+  .result h2 {
+    font-size: 20px;
+  }
+}
