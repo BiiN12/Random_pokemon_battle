@@ -102,4 +102,3 @@ export const generationObj:Generation= {
    Gen8: createNumArr(810,905),
    Gen9: createNumArr(906,1025)
 }
-
